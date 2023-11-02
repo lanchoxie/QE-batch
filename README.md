@@ -1,20 +1,27 @@
-##1.使用之前make sure你下载了这些库和他们对应的版本：##
+##1.使用之前make sure你下载了这些库和他们对应的版本：
 
-###1.1加载必要的module:###
+###1.1加载必要的module:
 	module load apps/python/3.7.1
 	module load apps/gnuplot/5.4.6
 
-###1.2可以pip之前先创建虚拟环境:（清华源：###
+###1.2可以pip之前先创建虚拟环境:（清华源：
 -i https://pypi.tuna.tsinghua.edu.cn/simple）
+
 >>>python3 -m venv 目录名
+
 创建虚拟环境
 然后：
+
 >>>source 目录名/bin/activate
+
 激活虚拟环境
 退出：
+
 >>>deactivate
 
-###1.3安装依赖库：###
+###1.3安装依赖库:
+>>>pip install PyQt5==5.15.6 PyQt5-sip==12.10.1 Pymatgen==2022.0.17
+
   pip install <library>==<version>
 	美观版本：spst可用，但是dm不可用
 	PyQt5                         5.15.9
@@ -34,20 +41,20 @@ export PATH=/hpc/data/home/spst/xiety/bin/Qt5.15.0/5.15.0/gcc_64/bin:$PATH
 export LD_LIBRARY_PATH=/usr/lib64/qt-3.3:$LD_LIBRARY_PATH
 export XDG_RUNTIME_DIR=/hpc/data/home/spst/xiety/bin/QE-batch
 	
-##2.使用方法：##
+##2.使用方法：
 
 建议使用pw.x --verson :6.8
 
-###2.1 在和QE-batch相同目录下（以下统称“总目录”）上传你的结构文件（POSCAR格式，fractional)###
-###2.2 在总目录建立in_{mode}文件，文件中你只需要设置和结构信息无关的部分（mode指的是你需要计算的mode，例如relax，scf等，其中pdos和Bader计算不需要建in_pdos和in_BaderCharge），注意把prefix=“BTO”###
+###2.1 在和QE-batch相同目录下（以下统称“总目录”）上传你的结构文件（POSCAR格式，fractional)
+###2.2 在总目录建立in_{mode}文件，文件中你只需要设置和结构信息无关的部分（mode指的是你需要计算的mode，例如relax，scf等，其中pdos和Bader计算不需要建in_pdos和in_BaderCharge），注意把prefix=“BTO”
 
-###2.3* 如果需要加spin，则在总目录下创建名为SPIN的文件，在里面输入你需要加SPIN的元素以及方向###
+###2.3* 如果需要加spin，则在总目录下创建名为SPIN的文件，在里面输入你需要加SPIN的元素以及方向
      example：>>>cat SPIN:
               Ni1  0.5
               Ni2  -0.5
               Ni   0.5
               Mn   -0.5
-###2.4* 如果需要加DFT+U，则在总目录下创建名为DFT-U的文件，在里面输入你需要加U的元素以及大小###
+###2.4* 如果需要加DFT+U，则在总目录下创建名为DFT-U的文件，在里面输入你需要加U的元素以及大小
      example：>>>cat DFT-U:
               Ni 6.7
               Ni1 6.7
@@ -56,9 +63,9 @@ export XDG_RUNTIME_DIR=/hpc/data/home/spst/xiety/bin/QE-batch
               Co 4.9
               Ti 1.9
 
-###2.5 运行python QE-batch/APP_9-6.py,选择模式后，点击“查看计算进度”即可查看计算进度###
-###2.6 在修改“选择计算平台”中内容的时候，注意修改完点保存###
-###2.7 pdos有三种查看方式，可在下来菜单栏中选择：分别是simple mode，detail orbital mode以及manual mode，分别可以查看元素tot pdos，元素投影轨道的tot pdos以及自定义查看的pdos。在自定义查看的pdos中，在input_text中允许的输入格式为：###
+###2.5 运行python QE-batch/APP_9-6.py,选择模式后，点击“查看计算进度”即可查看计算进度
+###2.6 在修改“选择计算平台”中内容的时候，注意修改完点保存
+###2.7 pdos有三种查看方式，可在下来菜单栏中选择：分别是simple mode，detail orbital mode以及manual mode，分别可以查看元素tot pdos，元素投影轨道的tot pdos以及自定义查看的pdos。在自定义查看的pdos中，在input_text中允许的输入格式为：
 	分别列出：{需要计算的原子序号/元素符号}-1-s（也可以是-tot）
 	求和：（需要计算的原子序号/元素符号）-1-s（也可以是-tot）
 	example:
@@ -68,29 +75,29 @@ export XDG_RUNTIME_DIR=/hpc/data/home/spst/xiety/bin/QE-batch
 	
 	！！！注意：这里的原子序号是vesta里面的编号，1-s并不是元素实际的1-s轨道，而是赝势画出来的1-s这里的1代表赝势输出的第1个轨道
 	
-###2.8 数据分析板块目前放置在BaderCharge计算中，目前有一个设置不合理的地方，也就是你需要计算pdos之后才可以点击badercharge里面的“计算电荷”，点击计算电荷之后重新打开查看badercharge页面，打开“分析数据”，就是数据分析界面了，会提炼出一些预设好的原子信息以及电子信息，通过“查看此类原子“按钮可以查看对应的信息，并且对里面信息可以计算关联系数，通过关联系数找到这个体系的一些性质之间的关联。###
+###2.8 数据分析板块目前放置在BaderCharge计算中，目前有一个设置不合理的地方，也就是你需要计算pdos之后才可以点击badercharge里面的“计算电荷”，点击计算电荷之后重新打开查看badercharge页面，打开“分析数据”，就是数据分析界面了，会提炼出一些预设好的原子信息以及电子信息，通过“查看此类原子“按钮可以查看对应的信息，并且对里面信息可以计算关联系数，通过关联系数找到这个体系的一些性质之间的关联。
  
  
  
 
-###2.9 time_schedule.py中你需要设置###
+###2.9 time_schedule.py中你需要设置
 time_schedule=[["PEA-C","relax"],["PEA-C","scf"],["PEA-C","bands"],["PEA-A","relax"]]为你需要计算总目录的目录名字以及计算模式，每个总目录下包含QE-batch以及in_{mode}文件以及.vasp文件。
 time_schedule.py应该和这些总目录在一个目录下。
 
-###2.10.1*关于固定原子：在replace.py中修改：###
+###2.10.1*关于固定原子：在replace.py中修改：
 fixed_atom_mode=1,
 然后把upper_layer和down_layer设置成你需要固定的原子的上下限（fractional）
 如果这些原子之外还需要固定原子，则在fixed_atom_index输入vesta中的原子序号
-###2.10.2*关于修改计算用的赝势：在replace.py中修改：###
+###2.10.2*关于修改计算用的赝势：在replace.py中修改：
 sp_format="X.SG15.PBE.UPF" 
 可供修改的格式是 ：
 "X.SG15.LDA.UPF","X.SG15.PBE.UPF","X_frl_gga.upf","X_srl_gga.upf","ONCV.PWM.X.UPF","ONCV.PWM.X.IN"
 
-###2.10.3*关于不放心批量替换的结构以及创建的文件夹中的内容，需要检查输入文件，就把replace.py中的sub_script=0,这样创建完目录后就不会提交任务了。###
+###2.10.3*关于不放心批量替换的结构以及创建的文件夹中的内容，需要检查输入文件，就把replace.py中的sub_script=0,这样创建完目录后就不会提交任务了。
 
 
 
-3.关于DM平台的PyQt5安装失败问题（2023/10/31注：稳定版可以使用，请忽略此消息）：
+##3.关于DM平台的PyQt5安装失败问题（2023/10/31注：稳定版可以使用，请忽略此消息）：
 
 假设目前依旧使用不了APP_9-6.py
 
