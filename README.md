@@ -37,11 +37,11 @@ Qt5.15.0 :需要安装（查看“预安装库”目录）
 当然which qmake可以查看qmake的目录 
 如下所示
 
-	#Qt5.15 path:\n
-	export LD_LIBRARY_PATH=/hpc/data/home/spst/xiety/bin/Qt5.15.0/5.15.0/gcc_64/lib:$LD_LIBRARY_PATH\n
-	export PATH=/hpc/data/home/spst/xiety/bin/Qt5.15.0/5.15.0/gcc_64/bin:$PATH\n
-	export LD_LIBRARY_PATH=/usr/lib64/qt-3.3:$LD_LIBRARY_PATH\n
-	export XDG_RUNTIME_DIR=/hpc/data/home/spst/xiety/bin/QE-batch\n
+	#Qt5.15 path:
+	export LD_LIBRARY_PATH=/hpc/data/home/spst/xiety/bin/Qt5.15.0/5.15.0/gcc_64/lib:$LD_LIBRARY_PATH
+	export PATH=/hpc/data/home/spst/xiety/bin/Qt5.15.0/5.15.0/gcc_64/bin:$PATH
+	export LD_LIBRARY_PATH=/usr/lib64/qt-3.3:$LD_LIBRARY_PATH
+	export XDG_RUNTIME_DIR=/hpc/data/home/spst/xiety/bin/QE-batch
 	
 ##2.使用方法：
 
@@ -84,13 +84,13 @@ time_schedule=[["PEA-C","relax"],["PEA-C","scf"],["PEA-C","bands"],["PEA-A","rel
 time_schedule.py应该和这些总目录在一个目录下。
 
 ###2.10.1*关于固定原子：在replace.py中修改：
-fixed_atom_mode=1,
+	fixed_atom_mode=1,
 然后把upper_layer和down_layer设置成你需要固定的原子的上下限（fractional）
 如果这些原子之外还需要固定原子，则在fixed_atom_index输入vesta中的原子序号
 ###2.10.2*关于修改计算用的赝势：在replace.py中修改：
-sp_format="X.SG15.PBE.UPF" 
+	sp_format="X.SG15.PBE.UPF" 
 可供修改的格式是 ：
-"X.SG15.LDA.UPF","X.SG15.PBE.UPF","X_frl_gga.upf","X_srl_gga.upf","ONCV.PWM.X.UPF","ONCV.PWM.X.IN"
+>>>"X.SG15.LDA.UPF","X.SG15.PBE.UPF","X_frl_gga.upf","X_srl_gga.upf","ONCV.PWM.X.UPF","ONCV.PWM.X.IN"
 
 ###2.10.3*关于不放心批量替换的结构以及创建的文件夹中的内容，需要检查输入文件，就把replace.py中的sub_script=0,这样创建完目录后就不会提交任务了。
 
@@ -135,7 +135,9 @@ sp_format="X.SG15.PBE.UPF"
 
 #######readvalence.py {dirname}
 在replace.py 计算完badercharge之后，进入dir中，运行bader Bader_{dirname}.cube
-然后python readvalence.py {dirname}即可显示原子上面的charge，第二列是现有charge，第三列是电离失去/得到charge
+然后
+	python readvalence.py {dirname}
+即可显示原子上面的charge，第二列是现有charge，第三列是电离失去/得到charge
 
 
 #######read_lowdin.py {str_name} mode 
