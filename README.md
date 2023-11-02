@@ -7,20 +7,20 @@
 ###1.2可以pip之前先创建虚拟环境:（清华源：
 -i https://pypi.tuna.tsinghua.edu.cn/simple）
 
->>>python3 -m venv 目录名
+	python3 -m venv 目录名
 
 创建虚拟环境
 然后：
 
->>>source 目录名/bin/activate
+	source 目录名/bin/activate
 
 激活虚拟环境
 退出：
 
->>>deactivate
+	deactivate
 
 ###1.3安装依赖库:
->>>pip install PyQt5==5.15.6 PyQt5-sip==12.10.1 Pymatgen==2022.0.17
+	pip install PyQt5==5.15.6 PyQt5-sip==12.10.1 Pymatgen==2022.0.17
 
   pip install <library>==<version>
 	美观版本：spst可用，但是dm不可用
